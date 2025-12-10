@@ -28,3 +28,5 @@ Notes:
 
 Source:  
 https://github.com/github/gitignore/blob/main/Python.gitignore
+
+Note: This needs to be updated! With local log.
