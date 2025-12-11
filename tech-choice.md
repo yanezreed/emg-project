@@ -1,11 +1,11 @@
 ## Choice Code Language
 
-Having gained confidence working with both C code and Python throughout my studies in Harvard's CS50 and CS50P courses. 
+Having gained confidence working with both C code and Python throughout my studies in Harvard's CS50 and CS50P courses.
 Because of this, I have now made the decision to develop my application primarily with Python.
 
 The decision itself was based on the combination of my program's user base, practicality, security considerations, and support in the form of documentation, which will be essential for me to be able to learn.
 ​
-Python's library ecosystem was also a major factor. Supporting the core functionality for my project with OAuth authentication, API communication, and the integration of my own AI models, all acting as vital components for my application. 
+Python's library ecosystem was also a major factor. Supporting the core functionality for my project with OAuth authentication, API communication, and the integration of my own AI models, all acting as vital components for my application.
 
 Working with these technologies at a higher level, rather than at a lower level in C code, is definitely more manageable for me at this stage. Not having to worry about manual memory management, pointer mismanagement, buffer overflow or any kind of low level error easily created in C, allows me to focus on understanding the underlying concepts before anything else. Which will perfectly fit my incremental approach. As I will be developing each piece of my application separately, to ultimately integrate the various core components later on.
 
@@ -56,3 +56,40 @@ I will also be maintaining my codebase using GitHub. Giving me access to version
 ## Security Considerations
 
 ...
+
+## Use of AI In My Application
+
+When initially planning for this project, I had intended to incorporate some variation of AI model trained using historical customer conversations. With the aim being to create a tool to assist staff at the business by creating consistent well structured replies to customer queries.
+
+Deciding upon training a lightweight instruction tuned large language model in Mistral 7B, I found through my research into possible LLM’s, that Mistral 7B v0.1 was the most suited. Having the best balance of performance, memory efficiency, and accuracy, while still being feasible for the business’s current resources.
+
+However, this approach would of course require me to store and process past customer to business conversations accessed via eBays’s API, which may possibly contain sensitive customer information such as an address or payment information.
+
+Researching the terms of service in depth, I discovered that my approach would absolutely violate both the eBay Developer Program License Agreement along with their data-handling policies. As the agreement explicitly states, developers must not use any customer information as training material for machine learning, stating that developers should not:
+
+“use, store, copy, modify, distribute, or process User Data (including transaction information, user messages, or personal data) for the purpose of training, retraining, or improving any artificial intelligence or machine-learning model.”
+
+This restriction applies even when the data is anonymised, transformed, partially redacted, or stored locally, meaning that my ambitions to train or fine tune any AI model with API accessed data would be impossible. Any attempt to use the dataset gathered from eBay’s API or fine tune the Mistral 7B model would absolutely constitute a break. Again, including anonymisation, as eBay forbids the repurposing of user content for machine learning, in its entirety.
+
+With my highest priority being to avoid causing any type of legal issues for the business that could result in an account ban, I ruled out any AI approach involving the repurposing, transforming, and storing of data gathered through the API. This forced me to completely pivot on my approach to the AI component of my project, ultimately leading me to the development of two separate, fully compliant solutions.
+​
+
+# Solution One
+
+My first solution incorporates AI reply assistance but avoids the prohibited practices outlined within eBay’s agreements. Instead of analyzing raw customer conversations, my application will rely on eBay’s internal AI, which is allowed to process sensitive message data, as it is within eBay’s own ecosystem.
+
+My program will then retrieve only the final produced AI generated reply, never the underlying customer messages. That said reply is then sterilized using Python based data scrubbing libraries, such as Presidio. All names, addresses, and any other identifying information are removed, and the user will manually confirm that no sensitive data still remains.
+
+Once cleaned, this non sensitive text will be passed into my own local prompt driven model, which will use prestored business information to enrich the replies' tone, language, as well as inserting any business relevant information. A staff member will then review this final reply, annually adding any necessary order specific information using the original conversation as reference. The reply is finally sent to the customer after any last manual error checking has been completed.
+​
+This approach will now be fully compliant with eBay’s terms and conditions, as my own AI model will never receive raw derivative customer data. Only ever processing sanitized text and static business context. Enabling me to implement an efficient yet fully compliant workflow for the business.
+
+# Solution Two
+
+My second solution will be far more conservative, however, ensuring that no sensitive data will ever leave eBay’s ecosystem, while also remaining future proof against any alterations eBay may introduce to its policies.
+
+In this approach, all AI processing will happen inside eBay’s website, utilizing their built in AI to generate replies for the user. My application will not touch, store, or process any customer messages whatsoever. Instead, it will solely function as a separate business information assistant for the staff.
+
+Again, I will be implementing a prompt base model that will provide instant access to company policies, tone guidance, and general internal knowledge even when offline.
+
+This will help staff members to edit or select eBay’s suggested replies before sending, while also keeping my system completely isolated from any sensitive customer data. Even if eBay does decide to update its policies, this workflow will remain compliant regardless, as the sensitive information will never actually leave eBay's platform.
