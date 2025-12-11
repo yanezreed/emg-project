@@ -74,7 +74,7 @@ This restriction applies even when the data is anonymised, transformed, partiall
 With my highest priority being to avoid causing any type of legal issues for the business that could result in an account ban, I ruled out any AI approach involving the repurposing, transforming, and storing of data gathered through the API. This forced me to completely pivot on my approach to the AI component of my project, ultimately leading me to the development of two separate, fully compliant solutions.
 ​
 
-# Solution One
+### Solution One
 
 My first solution incorporates AI reply assistance but avoids the prohibited practices outlined within eBay’s agreements. Instead of analyzing raw customer conversations, my application will rely on eBay’s internal AI, which is allowed to process sensitive message data, as it is within eBay’s own ecosystem.
 
@@ -84,7 +84,7 @@ Once cleaned, this non sensitive text will be passed into my own local prompt dr
 ​
 This approach will now be fully compliant with eBay’s terms and conditions, as my own AI model will never receive raw derivative customer data. Only ever processing sanitized text and static business context. Enabling me to implement an efficient yet fully compliant workflow for the business.
 
-# Solution Two
+### Solution Two
 
 My second solution will be far more conservative, however, ensuring that no sensitive data will ever leave eBay’s ecosystem, while also remaining future proof against any alterations eBay may introduce to its policies.
 
