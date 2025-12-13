@@ -60,7 +60,6 @@ I will also be maintaining my codebase using GitHub. Giving me access to version
 ## Use of AI In My Application
 
 When initially planning for this project, I had intended to incorporate some variation of AI model trained using historical customer conversations. With the aim being to create a tool to assist staff at the business by creating consistent well structured replies to customer queries.
-
 Deciding upon training a lightweight instruction tuned large language model in Mistral 7B, I found through my research into possible LLM’s, that Mistral 7B v0.1 was the most suited. Having the best balance of performance, memory efficiency, and accuracy, while still being feasible for the business’s current resources.
 
 However, this approach would of course require me to store and process past customer to business conversations accessed via eBays’s API, which may possibly contain sensitive customer information such as an address or payment information.
@@ -72,7 +71,6 @@ Researching the terms of service in depth, I discovered that my approach would a
 This restriction applies even when the data is anonymised, transformed, partially redacted, or stored locally, meaning that my ambitions to train or fine tune any AI model with API accessed data would be impossible. Any attempt to use the dataset gathered from eBay’s API or fine tune the Mistral 7B model would absolutely constitute a break. Again, including anonymisation, as eBay forbids the repurposing of user content for machine learning, in its entirety.
 
 With my highest priority being to avoid causing any type of legal issues for the business that could result in an account ban, I ruled out any AI approach involving the repurposing, transforming, and storing of data gathered through the API. This forced me to completely pivot on my approach to the AI component of my project, ultimately leading me to the development of two separate, fully compliant solutions.
-​
 
 ### Solution One
 
@@ -81,7 +79,7 @@ My first solution incorporates AI reply assistance but avoids the prohibited pra
 My program will then retrieve only the final produced AI generated reply, never the underlying customer messages. That said reply is then sterilized using Python based data scrubbing libraries, such as Presidio. All names, addresses, and any other identifying information are removed, and the user will manually confirm that no sensitive data still remains.
 
 Once cleaned, this non sensitive text will be passed into my own local prompt driven model, which will use prestored business information to enrich the replies' tone, language, as well as inserting any business relevant information. A staff member will then review this final reply, annually adding any necessary order specific information using the original conversation as reference. The reply is finally sent to the customer after any last manual error checking has been completed.
-​
+
 This approach will now be fully compliant with eBay’s terms and conditions, as my own AI model will never receive raw derivative customer data. Only ever processing sanitized text and static business context. Enabling me to implement an efficient yet fully compliant workflow for the business.
 
 ### Solution Two
@@ -93,3 +91,17 @@ In this approach, all AI processing will happen inside eBay’s website, utilizi
 Again, I will be implementing a prompt base model that will provide instant access to company policies, tone guidance, and general internal knowledge even when offline.
 
 This will help staff members to edit or select eBay’s suggested replies before sending, while also keeping my system completely isolated from any sensitive customer data. Even if eBay does decide to update its policies, this workflow will remain compliant regardless, as the sensitive information will never actually leave eBay's platform.
+
+### Conclusion
+
+In conclusion, through my research into both eBay’s data protection and Developer Program Agreement, I garnered a better awareness of general DPA rules, and have, as a consequence, heavily pivoted in my approach to this project. What began with a core plan of training a custom instruction tuned model has now evolved into a meticulously designed two solution system. In an attempt to avoid all possible prohibited data usage, while still also providing the business with a means to increase its efficiency.
+
+### Next Steps
+
+Both workflows have therefore been designed with the intention of offering the business clear options going forward. By not being locked into a single approach, the business can choose a workflow depending solely on their level of comfortability with eBays’s current terms and conditions, in addition to any amendments that may be introduced in the future, with data handling and AI usage being the main focus. This flexibility then allows the business to adapt based upon ever evolving policy and internal risk tolerance.
+
+While I’m confident in my first solution, in terms of its compliance with the terms and conditions, because of my assurance that it is only eBay’s internal AI handling the sensitive data. I will still be continuously reviewing my design with both the business and the officials at eBay in order to avoid any legal trouble. As I want to ensure that the sanitation of the information passed from eBay’s AI, aligns with the standards expected, and is not seen as a loophole. This ongoing process will be essential for minimising risk and guaranteeing compliance.
+
+My second workflow will consequently exist as a fallback solution. Offering the business a completely risk free alternative, in the case of my first causing a violation to any terms and conditions. With the AI model involved never receiving, storing, or interacting with any sensitive customer data, it remains insulated and compliant in the face of any future change to eBay’s terms and conditions. Along with this, an offline assistant could also be invaluable to the business in case of a network issue. Offering an internal information tool for new staff members trying to familiarize themselves with the business.
+
+In developing both solutions, the business will be able to pick and choose what best fits their operational needs and their tolerance to risk.
