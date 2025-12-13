@@ -92,10 +92,6 @@ Again, I will be implementing a prompt base model that will provide instant acce
 
 This will help staff members to edit or select eBay’s suggested replies before sending, while also keeping my system completely isolated from any sensitive customer data. Even if eBay does decide to update its policies, this workflow will remain compliant regardless, as the sensitive information will never actually leave eBay's platform.
 
-### Conclusion
-
-In conclusion, through my research into both eBay’s data protection and Developer Program Agreement, I garnered a better awareness of general DPA rules, and have, as a consequence, heavily pivoted in my approach to this project. What began with a core plan of training a custom instruction tuned model has now evolved into a meticulously designed two solution system. In an attempt to avoid all possible prohibited data usage, while still also providing the business with a means to increase its efficiency.
-
 ### Next Steps
 
 Both workflows have therefore been designed with the intention of offering the business clear options going forward. By not being locked into a single approach, the business can choose a workflow depending solely on their level of comfortability with eBays’s current terms and conditions, in addition to any amendments that may be introduced in the future, with data handling and AI usage being the main focus. This flexibility then allows the business to adapt based upon ever evolving policy and internal risk tolerance.
@@ -105,3 +101,7 @@ While I’m confident in my first solution, in terms of its compliance with the 
 My second workflow will consequently exist as a fallback solution. Offering the business a completely risk free alternative, in the case of my first causing a violation to any terms and conditions. With the AI model involved never receiving, storing, or interacting with any sensitive customer data, it remains insulated and compliant in the face of any future change to eBay’s terms and conditions. Along with this, an offline assistant could also be invaluable to the business in case of a network issue. Offering an internal information tool for new staff members trying to familiarize themselves with the business.
 
 In developing both solutions, the business will be able to pick and choose what best fits their operational needs and their tolerance to risk.
+
+### Conclusion
+
+In conclusion, through my research into both eBay’s data protection and Developer Program Agreement, I garnered a better awareness of general DPA rules, and have, as a consequence, heavily pivoted in my approach to this project. What began with a core plan of training a custom instruction tuned model has now evolved into a meticulously designed two solution system. In an attempt to avoid all possible prohibited data usage, while still also providing the business with a means to increase its efficiency.
