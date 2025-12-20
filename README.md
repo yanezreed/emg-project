@@ -28,9 +28,7 @@ Through my user interface the user will be able to;
 - Sign into their personal application account
 - Select a business to customer conversation, initiating the reply process
 - Review AI generated content from either the local AI model or eBay’s platform
-
-* Input non sensitive customer data into the local AI model for a response
-
+- Input non sensitive customer data into the local AI model for a response
 - Manually edit responses at any stage of the process
 
 By guiding the user through this process rather than committing to full automation, user reviews can be utilized to avoid any violations of policy with the use of sensitive customer data.
