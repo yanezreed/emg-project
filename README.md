@@ -2,8 +2,10 @@
 
 ## Project Overview
 
-This project is a native desktop application used as an internal tool for the staff at Guitar Anatomy, which is an eBay based ecommerce company based in the North East of England. Whom specialise in selling specialized guitar parts.
+This project is a native desktop application used as an internal tool for the staff at Guitar Anatomy, an eBay based ecommerce company based in the North East of England. Whom specialise in selling specialized guitar parts.
 
-This application streamlines staff processes, and enables the efficient handling and response to an ever increasing number of enquiries through eBay’s on platform messaging system. With the goal of reducing response times, increasing consistency, accuracy and generalize a tone across all customer communications.
+The application itself is designed to assist staff manage the ever increasing inquiries received through eBay’s platform messaging system. With the primary goal of reducing response times, improving consistency, accuracy and to generalize a tone across all customer communications.
 
-Designed to adhere to eBay’s strict Developer Program License Agreement and data protection requirements. The application itself provides two optional detached workflows, both leveraging separate AI models to support staff, while enforcing mandatory human review to ensure compliance.
+Initially aiming to create a full automated program, because of the use of AI within my project, the design required a pivot. Constraints on the use of customer data, imposed through the eBay Developer Program License Agreement and the data protection act, lead me to develop an application with two optional workflows. Each contains different levels of AI involvement, but both alike by the fact data is never stored, persisted or used to train AI models.
+
+Lastly this is a project built as a portfolio piece and is in no way affiliated with eBay.
