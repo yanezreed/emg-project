@@ -18,9 +18,7 @@ I have designed this system to keep these layers completely separated, through a
 
 ### User Interface Layer
 
-The interface has been built purposely, using PySide6, to guarantee ease of use for staff members through a simple layout. Prioritizing clarity, usability, and error prevention over any sort of aesthetics.
-
-Through the user interface, the user will be able to;
+The interface has been built purposely, using PySide6, to guarantee ease of use for staff members when navigating through the layout. Prioritizing clarity, usability, and error prevention over any sort of aesthetics. Through the user interface, the user will be able to;
 
 - Select and approve an optional workflow.
 - Authenticate API access, using a personal business account.
