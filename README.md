@@ -16,7 +16,7 @@ This application, at its core, contains three primary components; a user interfa
 
 I have designed this system to keep these layers completely separated, through a modular design, with the intention of allowing each of these features to be modified or replaced without affecting the full scope of the system. Therefore, improving the ability to maintain the program long term and reducing any risk of unintended side effects. Further details about the use of modular design can be found within the `tech-methodology.md` file.
 
-## User Interface Layer
+### User Interface Layer
 
 The interface has been built purposely, using PySide6, to guarantee ease of use for staff members through a simple layout. Prioritizing clarity, usability, and error prevention over any sort of aesthetics.
 
