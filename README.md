@@ -16,7 +16,7 @@ This application at its core, contains three primary components; a user interfac
 
 I have designed this system to keep these layers completely separated, through a modular design, with the intention of allowing each of these features to be modified or replaced without affecting the full scope of the system.
 
-Improving my ability to maintain my program long term, and reducing the risk of unintended side effects. I talk about this in further detail within my tech-methodology.md file.
+Therefore improving my ability to maintain my program long term, and reducing the risk of unintended side effects. I talk about this in further detail within my tech-methodology.md file.
 
 ### User Interface Layer
 
