@@ -23,7 +23,7 @@ The interface has been built purposely, using PySide6, to guarantee ease of use 
 - Select and approve a workflow.
 - Authenticate API access for the current session, using OAuth.
 - View customer/business conversations, retired through eBay’s API.
-- Select a business to customer conversation, initiating the reply process.
+- Select a business/customer conversation, initiating the reply process.
 - Follow generated URL, to access conversation and suggested reply, generated on platform.
 - Review AI generated content from either the local AI model or enrich returned reply from eBay's AI model.
 - Manually input non sensitive gathered information, into the local AI model for a suggested response.
