@@ -21,11 +21,26 @@ I have designed this system to keep these layers completely separated, through a
 The interface has been built purposely, using PySide6, to guarantee ease of use for staff members when navigating through the layout. Prioritizing clarity, usability, and error prevention over any sort of aesthetics. Through the user interface, the user will be able to;
 
 - Select and approve a workflow.
-- Authenticate API access, using a personal business eBay account.
-- View customer/business conversations, retired using eBay’s API.
+- Authenticate API access for the current session, using OAuth.
+- View customer/business conversations, retired through eBay’s API.
 - Select a business to customer conversation, initiating the reply process.
-- Review AI generated content from either the local AI model or eBay’s platform.
-- Input non sensitive customer data, into the local AI model for a response.
-- Manually review/edit responses at each stage of the process.
+- Follow generated URL, to access conversation and suggested reply, generated on platform.
+- Review AI generated content from either the local AI model or enrich returned reply from eBay's AI model.
+- Manually input non sensitive gathered information, into the local AI model for a suggested response.
+- Manually review/edit proposed responses at each stage of the process.
 
 By guiding the user through this process rather than committing to full automation, user reviews can be utilized to avoid any violations of policy with the use of sensitive customer data.
+
+### Application Layer
+
+The application layer coordinates between;
+
+- The workflow selected by the user
+- Coordinating prompts and feedback from the UI components to the local AI model
+- Ensuring data is passed through
+- the feedback from the use of internal and external AI, and
+- enforcement of user reviews
+
+Reducing the compliance risk against sensitive data being processed through the local AI model.
+
+...
