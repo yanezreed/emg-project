@@ -60,3 +60,14 @@ All customer data within this layer will not be stored beyond the active session
 
 Through the use of the second workflow, the integration layer will adjust behaviour to further restrict API access. Minimum information, to only the message and conversational history between the customer and the business. No access to eBay’s AI model will be given.
 Reducing risk of breaking platform policy, as no message content or suggested AI responses will be processed within the workflow.
+
+## Key System Features
+
+- PySide6 user interface, built for function over aesthetics
+- API based communication between application and eBay’s platform
+- OAuth 2.0 authentication, for API setup and further requests
+- Access to two distinct, user selected workflows
+- Compliant AI assisted response generation, with enforced manual reviews
+- Local prompt driven AI model, offering business related information only
+- No persistent storage of sensitive customer data
+- Session based data handling
