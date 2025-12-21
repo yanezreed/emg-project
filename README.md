@@ -73,3 +73,9 @@ Reducing risk of breaking platform policy, as no message content or suggested AI
 - Session based data handling
 
 ## Dual Workflow Design
+
+A key challenge in designing this project was the balance of user assistance while remaining compliant with strict platform policies and legal requirements. With the use of customer data for AI training explicitly prohibited, a fully automated system using conversational history to generate replies became unfeasible.
+
+Instead, I pivoted to the implementation of two separate workflows. Partially automated, the workflows intentionally differ in the use of AI, both incorporating enforced manual reviews at each stage of the process. To ensure no violation of platform policies or risk for the business. Deliberately transforming the application into an assistive AI tool, rather than a core decision maker.
+
+Described in detail below, the advantage of a two workflow solution is that I am able to maximize the use of compliant AI, while offering a zero risk alternative in case of future platform policy updates that furtherly restrict AI usage.
