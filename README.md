@@ -2,9 +2,9 @@
 
 ## Project Overview
 
-This project, is a native desktop application used as an internal tool for the staff at Guitar Anatomy, an eBay based ecommerce company based in the North East of England. Whom specialise in selling specialized guitar parts.
+This project is a native desktop application used as an internal tool for the staff at Guitar Anatomy, an eBay based ecommerce company based in the North East of England. Whom specialise in selling specialised guitar parts.
 
-The application itself is designed to assist staff in managing the ever increasing inquiries received through eBay’s platform messaging system. The primary goal being to reduce response times, improve consistency, accuracy, and generalize tone across all customer communications.
+The application itself is designed to assist staff in managing the ever increasing enquiries received through eBay’s platform messaging system. The primary goal being to reduce response times, improve consistency, accuracy, and generalize tone across all customer communications.
 
 Initially aiming to create a fully automated program, the project's use of AI necessitated a design pivot. Constraints on the use of customer data, imposed through the eBay Developer Program License Agreement and the Data Protection Act, led me to develop an application with two optional workflows, ensuring constant user involvement and review throughout the process. Each of the workflows contains a different level of AI involvement, but both are alike in the fact that data is never stored, persisted, or used to train AI models.
 
@@ -20,13 +20,14 @@ I have designed this system to keep these layers completely separated, through a
 
 The interface has been built purposely, using PySide6, to guarantee ease of use for staff members when navigating through the layout. Prioritizing clarity, usability, and error prevention over any sort of aesthetics. Through the user interface, the user will be able to;
 
-- Select and approve a workflow.
+- Select and approve one of the optional workflows.
 - Authenticate API access for the current session, using OAuth.
-- View customer/business conversations, retired through eBay’s API.
+- View customer/business conversations, retrieved through eBay’s API.
 - Select a business/customer conversation, initiating the reply process.
-- Follow generated URL, to access conversation and suggested reply, generated on platform.
-- Review AI generated content from either the local AI model or enrich returned reply from eBay's AI model.
-- Manually input non sensitive gathered information, into the local AI model for a suggested response.
+- Select a generated URL to access the conversation on eBay’s platform, generating a suggested reply.
+- Sanitize suggested replies from eBay’s platform, manual review is mandatory.
+- Manually input non sensitive information into the local AI model for a suggested enriched response.
+- Review and query the AI generated content from the local AI model.
 - Manually review/edit proposed responses at each stage of the process.
 
 By guiding the user through this process rather than committing to full automation, user reviews can be utilized to avoid any violations of policy with the use of sensitive customer data.
