@@ -49,3 +49,14 @@ The application layer coordinates between;
 Reducing the compliance risk against sensitive data being processed through the local AI model.
 
 ...
+
+### Integration Layer
+
+The integration layer of my system will manage all interactions between the application itself and the many third party services being utilized primarily through eBay’s API.
+
+That services are secured using OAuth 2.0 authentication, the recommended approach outlined by eBay, ensures that the application will only interact with the data and features intended and granted permission for.
+
+All customer data within this layer will not be stored beyond the active session. Ensuring compliance, as no unnecessary data is also requested from the API, or persisting within my application after the process has been completed.
+
+Through the use of the second workflow, the integration layer will adjust behaviour to further restrict API access. Minimum information, to only the message and conversational history between the customer and the business. No access to eBay’s AI model will be given.
+Reducing risk of breaking platform policy, as no message content or suggested AI responses will be processed within the workflow.
