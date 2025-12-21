@@ -20,15 +20,19 @@ I have designed this system to keep these layers completely separated, through a
 
 The interface has been built purposely, using PySide6, to guarantee ease of use for staff members when navigating through the layout. Prioritizing clarity, usability, and error prevention over any sort of aesthetics. Through the user interface, the user will be able to;
 
-- Select and approve one of the optional workflows.
-- Authenticate API access for the current session, using OAuth.
-- View customer/business conversations, retrieved through eBay’s API.
-- Select a business/customer conversation, initiating the reply process.
-- Select a generated URL to access the conversation on eBay’s platform, generating a suggested reply.
-- Sanitize suggested replies from eBay’s platform, manual review is mandatory.
-- Manually input non sensitive information into the local AI model for a suggested enriched response.
-- Review and query the AI generated content from the local AI model.
+- Choose one of the two optional workflows.
+- Authenticate API usage by linking the desired eBay account using OAuth.
+- Scroll and select a past business to customer conversation,retrieved through the API.
+- Initiate the reply process.
+- Click on the generated URL to access the specific conversation on eBay’s platform.
+- Gather the suggested generated reply within eBay’s platform.
+- Sanitize the suggested reply, ready for manual review and clearance.
+- Manually input non sensitive information into the local AI model, to be enriched with business related information.
+
+The user will also always be able to;
+
 - Manually review/edit proposed responses at each stage of the process.
+- Query the local AI model, holding only business related information, and strictly no sensitive customer data.
 
 By guiding the user through this process rather than committing to full automation, user reviews can be utilized to avoid any violations of policy with the use of sensitive customer data.
 
