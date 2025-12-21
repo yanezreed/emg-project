@@ -63,7 +63,7 @@ Reducing risk of breaking platform policy, as no message content or suggested AI
 
 ## Key System Features
 
-- PySide6 user interface, built for function over aesthetics
+- PySide6 built user interface, using QtDesigner
 - API based communication between application and eBay’s platform
 - OAuth 2.0 authentication, for API setup and further requests
 - Access to two distinct, user selected workflows
@@ -71,3 +71,5 @@ Reducing risk of breaking platform policy, as no message content or suggested AI
 - Local prompt driven AI model, offering business related information only
 - No persistent storage of sensitive customer data
 - Session based data handling
+
+## Dual Workflow Design
