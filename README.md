@@ -95,3 +95,8 @@ The second workflow is designed intentionally to be far more conservative than t
 Instead this second workflow will assist the user and business through an offline, prompt driven AI model. Again preloaded with the business information, but not for the purpose of enriching a reply, but offering the information and advice needed to build the response from scratch. Providing users instant access, through prompts to the model, to private internal knowledge such as business policies, tone guidance and operating procedures.
 
 Designed as a support tool opposed to a reply generator, this AI model does not expect to receive any customer data, and actively prompts the user to assure this before processing through a manual review. With its purpose explicitly being to help users compose and refine their responses without ever coming into contact with customer data both from and off eBay’s platform. Offering a tool to the user and the business which is overtly separated from any sensitive or regulated data, ensuring it is impervious to future restrictions imposed by eBay’s Developer Program Licence Agreement and data protection legislation.
+
+## Workflow Decision
+
+In an attempt not to lock the business into a single approach, which could become obsolete in the face of harsher restrictions on AI usage. I have intentionally designed this application to provide long term flexibility through this dual workflow structure. Offering staff/users an isolated support tool through the second workflow, rather than a complaint, but AI assisted enrichment in the first.
+Ensuring a contrived value to the business, and consequently a use for this application, regardless of future platform or policy updates.
