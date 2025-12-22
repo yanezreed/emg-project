@@ -79,3 +79,11 @@ A key challenge in designing this project was the balance of user assistance whi
 Instead, I pivoted to the implementation of two separate workflows. Partially automated, the workflows intentionally differ in the use of AI, both incorporating enforced manual reviews at each stage of the process. To ensure no violation of platform policies or risk for the business. Deliberately transforming the application into an assistive AI tool, rather than a core decision maker.
 
 Described in detail below, the advantage of a two workflow solution is that I am able to maximize the use of compliant AI, while offering a zero risk alternative in case of future platform policy updates that furtherly restrict AI usage.
+
+### Workflow Option One
+
+Within workflow one, all sensitive customer data is processed exclusively within eBay’s platform. As due to the restrictions outlined by eBay, any use of sensitive customer data gathered through the API would constitute a violation if used to train or refine AI models, even if anonymised. Consequently, by design, the application does not process or persist/store any raw customer data for AI usage.
+
+Staff are initially directed to the relevant conversation via the user interface, accessed through a given URL acquired through an automated API request. Here, eBay’s internal AI can generate a suggested reply using the conversational context available. With all processing and handling of sensitive customer data being performed by eBay itself. Only the generated text reply is then copied into the application, and not the original conversation. This reply, once sanitized to remove any potential sensitive information, using Pythonic libraries, is then manually reviewed by the user.
+
+At this stage, the message can then be enriched with relevant business information within a local purposely trained AI model. Readily available within the workflow's user interface. Assisting the user with specific updated business knowledge, such as pricing, product details, or tonal guidance. Helping to increase efficiency and improve reply consistency across the entire business.
