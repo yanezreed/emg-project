@@ -100,3 +100,11 @@ Designed as a support tool opposed to a reply generator, this AI model does not 
 
 In an attempt not to lock the business into a single approach, which could become obsolete in the face of harsher restrictions on AI usage. I have intentionally designed this application to provide long term flexibility through this dual workflow structure. Offering staff/users an isolated support tool through the second workflow, rather than a complaint, but AI assisted enrichment in the first.
 Ensuring a contrived value to the business, and consequently a use for this application, regardless of future platform or policy updates.
+
+## Legal Disclaimer
+
+In terms of intent for this project, the application has solely been developed as a internal tool for Guitar Anatomy. Never to be publicly released, used commercially, deployed as a production system.
+
+Internal use will only be possible following confirmation that the system is indeed compliant with eBay’s platform policies and data handling requirements. Permission will need to be granted by both eBay, through the Developers Program, and Guitar Anatomy.
+
+To ensure compliance, both workflows have been developed and tested within the controlled sandbox API environment provided by eBay. With the use of mock data, to guarantee that no sensitive customer data is mishandled, or processed through a local/external AI model.
