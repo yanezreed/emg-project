@@ -108,3 +108,13 @@ In terms of intent for this project, the application has solely been developed a
 Internal use will only be possible following confirmation that the system is indeed compliant with eBay’s platform policies and data handling requirements. Permission will need to be granted by both eBay, through the Developers Program, and Guitar Anatomy.
 
 To ensure compliance, both workflows have been developed and tested within the controlled sandbox API environment provided by eBay. With the use of mock data, to guarantee that no sensitive customer data is mishandled, or processed through a local/external AI model.
+
+## Security Considerations
+
+With legal and data security being of the highest priority for this project, a substantial amount of effort has been taken to carefully plan and develop the application to best protect the business.
+
+This caution is due to the sheer extensive amounts of interactions this program engages in with third party services. eBay’s API, OAuth authentication, and two AI assisted workflows are all major functional components of the system and serve as points of caution. Because of the inherent risks these components present, through a possibility of leaked or mishandled sensitive customer data.
+
+Consequently, it was decided to employ a layered modular design strategy through development. By isolating the individual functional elements of the application, such as the application, integration, and user interface layers. All three layers’ outputs and inputs were defined clearly. Increasing the visibility of what data was received, processed, and transmitted at each stage of execution within the program.
+
+Clear separation of responsibilities allowed for the identification of problematic behavior more easily, particularly when unexpected results were produced within an element and pasted to another. Subsequently, reducing the possibility of system flaws that could allow sensitive data to be passed to areas of my program, which could incur a leak or breach of platform policies. For example, customer data is being stored long past the current active session in the program.
