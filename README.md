@@ -119,4 +119,6 @@ Consequently, it was decided to employ a layered modular design strategy through
 
 Clear separation of responsibilities allowed for the identification of problematic behavior more easily, particularly when unexpected results were produced within an element and pasted to another. Subsequently, reducing the possibility of system flaws that could allow sensitive data to be passed to areas of my program, which could incur a leak or breach of platform policies. For example, customer data is being stored long past the current active session in the program.
 
+### API Access
+
 API access is handled through OAuth authentication, which is recommended by eBay themselves, ensuring the application only accesses authorised resources on the website by secure https requests. Tokens are requested by the system with the minimum amount of scope required for the active workflow, limiting the amount of data compromised in case of credential compromise. In addition, tokens will never be exposed through the user interface or written in plain English within the logs, again not persisting past the active session.
