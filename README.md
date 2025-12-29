@@ -122,3 +122,13 @@ Clear separation of responsibilities allowed for the identification of problemat
 ### API Access
 
 API access is handled through OAuth authentication, which is recommended by eBay themselves, ensuring the application only accesses authorised resources on the website by secure https requests. Tokens are requested by the system with the minimum amount of scope required for the active workflow, limiting the amount of data compromised in case of credential compromise. In addition, tokens will never be exposed through the user interface or written in plain English within the logs, again not persisting past the active session.
+
+### Data handling
+
+In terms of how my system handles data, I have specifically designed my application with the purpose of minimizing the exposure of sensitive data beyond what is strictly necessary. Guided by the principle of data minimisation, which I have incorporated within past projects, the amount of sensitive customer data requested through eBay’s API has been limited to strictly what is required for the active workflow.
+
+Any customer messages or conversations collected for both workflows by the API are only held and processed within the program's memory within the current active session. With the data never being written to the disk, cached, or logged. Ensuring that for both workflows, when the user’s current session is ended, all customer data within the system will be discarded from memory, preventing any form of unintended retention.
+
+Committing to this practice, the application will display customer to business conversations within the interface, while remaining compliant with the eBay data handling policies. As through this avoidance of any persisted customer data within storage, I will consequently reduce the risk of data leakage, through logs, debugging practices, and through unintended side effects during development. Accidental retention of sensitive data and unauthorised reuse will also be mitigated, as the system will purposely discard all sensitive data at the end of each session.
+
+With customer data only being accessed when strictly necessary, only for the duration required, and used for its original purpose, with the addition of its removal after the active session has expired. Enforced compliance and strong security are maintained through the handling of data within the system.
