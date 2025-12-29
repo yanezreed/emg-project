@@ -123,7 +123,7 @@ Clear separation of responsibilities allowed for the identification of problemat
 
 API access is handled through OAuth authentication, which is recommended by eBay themselves, ensuring the application only accesses authorised resources on the website by secure https requests. Tokens are requested by the system with the minimum amount of scope required for the active workflow, limiting the amount of data compromised in case of credential compromise. In addition, tokens will never be exposed through the user interface or written in plain English within the logs, again not persisting past the active session.
 
-### Data handling
+### Data Handling
 
 In terms of how my system handles data, I have specifically designed my application with the purpose of minimizing the exposure of sensitive data beyond what is strictly necessary. Guided by the principle of data minimisation, which I have incorporated within past projects, the amount of sensitive customer data requested through eBay’s API has been limited to strictly what is required for the active workflow.
 
