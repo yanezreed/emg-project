@@ -20,11 +20,11 @@ Designed this way to keep each layer completely separated, through a modular des
 
 The interface has been built purposely, using PySide6, to guarantee ease of use for staff members when navigating through the layout. Prioritizing clarity, usability, and error prevention over any sort of aesthetics. Through the user interface, the user will be able to;
 
-- Choose one of the two optional workflows.
+- Select one of two optional workflows.
 - Authenticate API usage by linking the desired eBay account using OAuth.
-- Scroll and select a past business to customer conversation,retrieved through the API.
-- Initiate the reply process.
-- Click on the generated URL to access the specific conversation on eBay’s platform.
+- Scroll/select an individual past business to customer conversation, retrieved through the API.
+- Initiate the start of the reply process.
+- Click the generated URL to access the specific conversation on eBay’s platform.
 - Gather the suggested generated reply within eBay’s platform.
 - Sanitize the suggested reply, ready for manual review and clearance.
 - Manually input non sensitive information into the local AI model, to be enriched with business related information.
