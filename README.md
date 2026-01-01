@@ -38,17 +38,18 @@ By guiding the user through this process rather than committing to full automati
 
 ### Application Layer
 
-The application layer coordinates between;
+The application layer coordinates between the core components of the system. Responsible for workflow execution, the flow of data sensitive or not and compliance enforcement, as the central controller. Other responsibilities include;
 
-- The workflow selected by the user
-- Coordinating prompts and feedback from the UI components to the local AI model
-- Ensuring data is passed through
-- the feedback from the use of internal and external AI, and
-- enforcement of user reviews
+- Managing the workflow the program will proceed with, selected at the start
+- Coordinating prompts and feedback from the UI components to the local AI model, mainly in text form
+- Allowing the secure and organised passage of data between layers
+- Handling the feedback from both AI models, delivering the information to the UI
+- Enforces mandatory user reviews on prompts/data about to be processed by an AI model
+- Ensuring unauthorised data access or processing does not take place within either workflow
 
-Reducing the compliance risk against sensitive data being processed through the local AI model.
+The application layer's general purpose is to make sure that each step of the selected process is being completed before moving onto the next correctly ordered stage. With only the permitted data, required for each specific step being securely transferred between the program's components.
 
-...
+Through this centralised design, I can reduce the risk of mishandling data, because the logic for the coordination will be held within one file/layer in my program. Allowing for a clearer understanding on what exact information is being passed to which component, and therefore enabling more effective testing and easier identification of potential compliance issues. Inspired by the principles of data minimisation and modular design, which I will talk more about in my security considerations section below.
 
 ### Integration Layer
 
