@@ -14,7 +14,7 @@ Lastly, this is a project built as a portfolio piece and is in no way affiliated
 
 This application, at its core, contains three primary components; a user interface layer, an application layer, and an integration layer.
 
-I have designed this system to keep these layers completely separated, through a modular design, with the intention of allowing each of these features to be modified or replaced without affecting the full scope of the system. Therefore, improving the ability to maintain the program long term and reducing any risk of unintended side effects. Further details about the use of modular design can be found within the `tech-methodology.md` file.
+Designed this way to keep each layer completely separated, through a modular design, the intention was to allow each of these features to be modified or replaced without affecting the full scope of the system. Improving the ability to maintain the program long term, and reduce any risk of unintended side effects. Further details about the use of modular design can be found within the `tech-methodology.md` file. Below is an explanation of each layer.
 
 ### User Interface Layer
 
