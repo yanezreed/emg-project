@@ -67,14 +67,14 @@ Through the use of the second workflow, the integration layer will adjust its be
 
 ## Key System Features
 
-- PySide6 built user interface, using QtDesigner
-- API based communication between application and eBay’s platform
-- OAuth 2.0 authentication, for API setup and further requests
-- Access to two distinct, user selected workflows
-- Compliant AI assisted response generation, with enforced manual reviews
-- Local prompt driven AI model, offering business related information only
-- No persistent storage of sensitive customer data
-- Session based data handling
+- PySide6 built user interface, incorporating QtDesigner.
+- API based communication between application and eBay’s platform.
+- OAuth 2.0 authentication, for API setup and further requests.
+- Access to two distinct, user selected workflows.
+- Compliant AI assisted response generation, with enforced manual reviews.
+- Local prompt driven AI model, offering business related information only.
+- No persistent storage of sensitive customer data.
+- Session based data handling.
 
 ## Dual Workflow Design
 
