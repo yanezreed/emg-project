@@ -53,14 +53,17 @@ Through this centralised design, I can reduce the risk of mishandling data, beca
 
 ### Integration Layer
 
-The integration layer of my system will manage all interactions between the application itself and the many third party services being utilized primarily through eBay’s API.
+The integration layer of my system will manage all interactions between the application itself and the many external third party services, being incorporated primarily to allow my application to communicate with eBay’s API.
 
-That services are secured using OAuth 2.0 authentication, the recommended approach outlined by eBay, ensures that the application will only interact with the data and features intended and granted permission for.
+Utilizing OAuth 2.0 authentication, the recommended approach outlined by eBay, this layer ensures that the application will only interact with the data and features intended, and granted permission for.
 
-All customer data within this layer will not be stored beyond the active session. Ensuring compliance, as no unnecessary data is also requested from the API, or persisting within my application after the process has been completed.
+OAuth 2.0 authentication within this layer, enables the user to sign into their eBay account, authorizing communication to and from this application. OAuth is used so that login credentials are not exposed to this application directly, instead, time sensitive access tokens are provided. Said access tokens are only used to authenticate API requests, during the user's active session within the application. These API requests are restricted to only essential information, needed for the current selected workflow.
 
-Through the use of the second workflow, the integration layer will adjust behaviour to further restrict API access. Minimum information, to only the message and conversational history between the customer and the business. No access to eBay’s AI model will be given.
-Reducing risk of breaking platform policy, as no message content or suggested AI responses will be processed within the workflow.
+An example being that not all conversations from the account will be requested at once, but instead what is retrieved is incrementally done so, as much as is needed to populate the user interface. Any additional requests are made when necessary to prevent collecting possible unauthorised information which may result in legal or policy violations.
+
+Again all customer data within this layer will not be stored beyond the active session. Ensuring compliance, as no persisting data will be allowed within my application after the process has been completed.
+
+Through the use of the second workflow, the integration layer will adjust its behaviour to further restrict API access. Limiting the data requested to only that of the customer to business conversational history, with no interaction with eBay’s AI systems allowed.
 
 ## Key System Features
 
