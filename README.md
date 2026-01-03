@@ -100,11 +100,11 @@ At this stage, the message can then be enriched with relevant business informati
 
 ### Workflow Option Two
 
-The second workflow is designed intentionally to be far more conservative than the first. This workflow does not access, process, store or interact with any protected sensitive customer data sent through via API. Including any sanitized content originating from eBay’s platform.
+The second workflow differs as it does not access, process, store or interact with any protected sensitive customer data sent through via API. Including any sanitized content originating from eBay’s platform.
 
-Instead this second workflow will assist the user and business through an offline, prompt driven AI model. Again preloaded with the business information, but not for the purpose of enriching a reply, but offering the information and advice needed to build the response from scratch. Providing users instant access, through prompts to the model, to private internal knowledge such as business policies, tone guidance and operating procedures.
+Instead this second workflow will assist the user and business through an offline prompt driven AI model, again preloaded with the business information. Not for the purpose of enriching a reply, but offering the information and advice needed to build the response from scratch. Providing users instant access, through prompts to the model, to private internal knowledge such as business policies, tone guidance and operating procedures.
 
-Designed as a support tool opposed to a reply generator, this AI model does not expect to receive any customer data, and actively prompts the user to assure this before processing through a manual review. With its purpose explicitly being to help users compose and refine their responses without ever coming into contact with customer data both from and off eBay’s platform. Offering a tool to the user and the business which is overtly separated from any sensitive or regulated data, ensuring it is impervious to future restrictions imposed by eBay’s Developer Program Licence Agreement and data protection legislation.
+Designed as a support tool opposed to a reply generator, this AI model does not expect to receive any customer data, and actively prompts the user to assure this before processing through a manual review. With its purpose explicitly being to help users compose and refine their responses without ever coming into contact with customer data both from and off eBay’s platform. Offering a tool to the business which is overtly separated from any sensitive or regulated data, ensuring it is impervious to future restrictions imposed by eBay’s Developer Program Licence Agreement and data protection legislation.
 
 ## Workflow Decision
 
