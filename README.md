@@ -123,13 +123,17 @@ To ensure compliance, both workflows have been developed and tested within the c
 
 ## Security Considerations
 
-With legal and data security being of the highest priority for this project, a substantial amount of effort has been taken to carefully plan and develop the application to best protect the business.
+With legal and data security being the highest priority for this project, a substantial amount of effort has been taken to carefully plan and develop the application to best protect the business.
 
-This caution is due to the sheer extensive amounts of interactions this program engages in with third party services. eBay’s API, OAuth authentication, and two AI assisted workflows are all major functional components of the system and serve as points of caution. Because of the inherent risks these components present, through a possibility of leaked or mishandled sensitive customer data.
+This caution is due to the sheer amount of extensive interactions this program engages in with third party services. eBay’s API, OAuth authentication, and two AI assisted workflows are all major functional components of the system and serve as points of caution. Because of the inherent risks these components present, through a possibility of leaked or mishandled sensitive customer data.
 
-Consequently, it was decided to employ a layered modular design strategy through development. By isolating the individual functional elements of the application, such as the application, integration, and user interface layers. All three layers’ outputs and inputs were defined clearly. Increasing the visibility of what data was received, processed, and transmitted at each stage of execution within the program.
+Consequently, it was decided to employ a layered modular design strategy through development. Instead of overlapping functionality, such as data handling and functional logic, across the entirety of my codebase, three clearly defined layers have been designed to encapsulate these responsibilities. Namely the application, integration, and user interface layer.
 
-Clear separation of responsibilities allowed for the identification of problematic behavior more easily, particularly when unexpected results were produced within an element and pasted to another. Subsequently, reducing the possibility of system flaws that could allow sensitive data to be passed to areas of my program, which could incur a leak or breach of platform policies. For example, customer data is being stored long past the current active session in the program.
+All three layers’ outputs and inputs have been defined clearly. Increasing the visibility of what data was received, processed, and transmitted at each stage of execution within the program. Allowing for the tight control of sensitive data, ensuring said information will only flow into a layer when explicitly required.
+
+Clear separation of responsibilities allowed for the identification of problematic behavior more easily, particularly when unexpected results were produced within a single layer, instead of the entire system.
+
+Subsequently, reducing the possibility of system flaws that could allow sensitive data to be passed to areas of my program, which could incur a leak or breach of platform policies. Such as customer data persisting or stored long past the current active session in the program, which absolutely could result in a data leak.
 
 ### API Access
 
