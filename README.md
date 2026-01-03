@@ -111,6 +111,8 @@ Designed as a support tool opposed to a reply generator, this AI model does not 
 In an attempt not to lock the business into a single approach, which could become obsolete in the face of harsher restrictions on AI usage. I have intentionally designed this application to provide long term flexibility through this dual workflow structure. Offering staff/users an isolated support tool through the second workflow, rather than a complaint, but AI assisted enrichment in the first.
 Ensuring a contrived value to the business, and consequently a use for this application, regardless of future platform or policy updates.
 
+To see a more indepth breakdown of each workflow depicted through various flowcharts, written explanations, and UI sketches, please refer to the file `workflows.md`.
+
 ## Legal Disclaimer
 
 In terms of intent for this project, the application has solely been developed as a internal tool for Guitar Anatomy. Never to be publicly released, used commercially, deployed as a production system.
