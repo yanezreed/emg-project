@@ -148,3 +148,11 @@ In terms of how the system handles data, it has specifically been designed with 
 For example, customer messages or full conversations collected for either workflow by the API, are only held and processed within the program's memory during the current active session. With data never written to the disk, cached, or logged. This ensures that for both workflows, when the user’s current session is ended, customer data within the system will be discarded from memory, preventing any form of unintended retention.
 
 By committing to this practice, the application will display customer to business conversations within the interface, while remaining compliant with the eBay data handling policies. As through this avoidance of any persisted customer data within storage, I will be reducing the risk of data leakage through logs, debugging practices, and through unintended side effects during development. Ensuring compliance, in addition to reducing accidental retention of sensitive data and unauthorised reuse.
+
+## Installation
+
+## Configuration
+
+## Security Threats
+
+## Testing
