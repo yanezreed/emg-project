@@ -88,9 +88,13 @@ Described below in further detail, the advantage of a two workflow solution is t
 
 ### Workflow Option One
 
-Within workflow one, all sensitive customer data is processed exclusively within eBay’s platform. As due to the restrictions outlined by eBay, any use of sensitive customer data gathered through the API would constitute a violation if used to train or refine AI models, even if anonymised. Consequently, by design, the application does not process or persist/store any raw customer data for AI usage.
+Within the first workflow, all sensitive customer data is processed exclusively within eBay’s platform. As due to the restrictions outlined by eBay any use of sensitive customer data gathered through the API would constitute a violation, if used to train or refine AI models. Even if the data itself is anonymised.
 
-Staff are initially directed to the relevant conversation via the user interface, accessed through a given URL acquired through an automated API request. Here, eBay’s internal AI can generate a suggested reply using the conversational context available. With all processing and handling of sensitive customer data being performed by eBay itself. Only the generated text reply is then copied into the application, and not the original conversation. This reply, once sanitized to remove any potential sensitive information, using Pythonic libraries, is then manually reviewed by the user.
+Consequently, by design, the application does not attempt to process or persist/store any raw customer data for AI usage. Here is a description of how the AI workflow differs:
+
+Staff are initially directed to the relevant conversation via the user interface, accessed through a given URL, acquired through an automated API request. Here eBay’s internal AI then generates a suggested reply using the conversational context available. With all processing and handling of sensitive customer data being performed by eBay itself.
+
+Only the generated text reply is then copied into the application, and not the original conversation. This reply, once sanitized to remove any potential sensitive information using Pythonic libraries, is then manually reviewed by the user.
 
 At this stage, the message can then be enriched with relevant business information within a local purposely trained AI model. Readily available within the workflow's user interface. Assisting the user with specific updated business knowledge, such as pricing, product details, or tonal guidance. Helping to increase efficiency and improve reply consistency across the entire business.
 
