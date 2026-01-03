@@ -115,7 +115,7 @@ To see a more indepth breakdown of each workflow depicted through various flowch
 
 ## Legal Disclaimer
 
-In terms of intent for this project, the application has solely been developed as a internal tool for Guitar Anatomy. Never to be publicly released, used commercially, deployed as a production system.
+In terms of the intent for this project, this application has solely been developed as a internal tool for Guitar Anatomy. Never to be publicly released, used commercially, deployed as a production system.
 
 Internal use will only be possible following confirmation that the system is indeed compliant with eBay’s platform policies and data handling requirements. Permission will need to be granted by both eBay, through the Developers Program, and Guitar Anatomy.
 
