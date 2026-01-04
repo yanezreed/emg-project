@@ -153,6 +153,8 @@ By committing to this practice, the application will display customer to busines
 
 ## Configuration
 
+Within this configuration section, I will outline the areas of the system that have the ability to be adjusted by the user, without the need for technical understanding of the codebase. Note, configuration within this application has been kept to a minimum, to reduce the possibility of user made alterations that could result in a compliance, or data handling violation.
+
 ## Security Threats
 
 ## Testing
