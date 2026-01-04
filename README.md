@@ -155,6 +155,18 @@ By committing to this practice, the application will display customer to busines
 
 Within this configuration section, I will outline the areas of the system that have the ability to be adjusted by the user, without the need for technical understanding of the codebase. Note, configuration within this application has been kept to a minimum, to reduce the possibility of user made alterations that could result in a compliance, or data handling violation.
 
+## OAuth Configuration
+
+Authentication is performed through the use of OAuth 2.0, which is required for both user workflows, and is completed by the user signing in via eBay’s official authorization page hosted on their website.
+
+Once permission is granted, time sensitive access tokens are then issued to the application, allowing then access to required API resources.
+
+This approach is intentional. By delegating authentication responsibilities purely to eBay, through their browser based OAuth environment, the application is then devoid of any responsibility or risk that comes with the handling of usernames and passwords. Significantly reducing the liability and security risks that accompany the handling of the credentials of these large scale business eBay accounts.
+
+The access tokens, that are issued by eBay upon successful authentication, are time sensitive in the sense that they can’t be utilized outside of the current active user session. With the application intentionally discarding all token information upon the session's end, regardless of whether they have been utilized to garner data or not. Token renewal can then occur again through OAuth when required, without any need to access the codebase.
+
+All of these design decisions and limitations to the users experience, have been introduced to ensure compliant authentication and abide by the practices recommended by eBays’s developer program.
+
 ## Security Threats
 
 ## Testing
