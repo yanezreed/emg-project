@@ -167,6 +167,10 @@ The access tokens, that are issued by eBay upon successful authentication, are t
 
 All of these design decisions and limitations to the users experience, have been introduced to ensure compliant authentication and abide by the practices recommended by eBays’s developer program.
 
+## Workflow Configuration
+
+## Sandbox Usage
+
 ## Security Threats
 
 ## Testing
