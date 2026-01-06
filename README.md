@@ -167,6 +167,14 @@ The access tokens, that are issued by eBay upon successful authentication, are t
 
 All of these design decisions and limitations to the users experience, have been introduced to ensure compliant authentication and abide by the practices recommended by eBays’s developer program.
 
+### Virtual Environment
+
+Originally set up to prevent possible version conflicts between both Python 3.11 and the accompanying PySide6 package, the use of a virtual environment within this project has provided several benefits.
+
+By the very nature of a venv, the project's dependencies are isolated from any system wide previous Python installments. Causing the program to run consistently, with the same behaviour, across different pieces of hardware. While also avoiding conflicts with other Python versions or packages, past or present, that are already installed on the machine.
+
+Consequently this same environment can be recreated within the different computers present at the business, without requiring any changes to the present global Python configuration.
+
 ## Workflow Configuration
 
 ## Sandbox Usage
