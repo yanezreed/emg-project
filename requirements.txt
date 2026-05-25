@@ -1,5 +1,0 @@
-## Keep note:
-Requirement already satisfied: pyside6 in c:\workspace\.venv\lib\site-packages (6.10.1)
-Requirement already satisfied: shiboken6==6.10.1 in c:\workspace\.venv\lib\site-packages (from pyside6) (6.10.1)
-Requirement already satisfied: PySide6_Essentials==6.10.1 in c:\workspace\.venv\lib\site-packages (from pyside6) (6.10.1)
-Requirement already satisfied: PySide6_Addons==6.10.1 in c:\workspace\.venv\lib\site-packages (from pyside6) (6.10.1)

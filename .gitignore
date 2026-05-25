@@ -214,3 +214,35 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# eBay sandbox OAuth
+config_ebay_sandbox.py
+
+old_ui_chat.py
+
+old_datastore.py
+
+database.py
+
+token_store.py
+ebay_api.py
+old_oauth_server.py
+
+generate_dialog_still_in_use.py
+config.py
+chat_widget.py
+create_account_dialog.py
+datastore.py
+ebay_tokens.json
+initial_window.py
+login_dialog.py
+main.py
+oauth_start.py
+options_dialog.py
+style.py
+user_class.py
+workflow_dialog.py
+business_info.txt
+ebay_secrets.py
+users.db
+.venv

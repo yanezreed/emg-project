@@ -1,4 +1,12 @@
-Flask
-requests
-cryptography
-PySide6
+#Flask
+#requests
+#cryptography
+#PySide6
+
+#presidio-analyzer
+#presidio-anonymizer
+#spacy
+
+# spacy used by presidio-analyzer
+# libary for natural language processing
+# tokenizes the text and identifies entities
