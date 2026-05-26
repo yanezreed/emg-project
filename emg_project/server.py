@@ -105,7 +105,7 @@ def conversations():
         timeout = 20
     )
     
-    return api_response.json()
+    return api_response.text
 
 @flask_app.route("/check-test-tokenn")
 def check_test_token():
