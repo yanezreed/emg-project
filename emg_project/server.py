@@ -34,10 +34,6 @@ def start_oauth():
     # once complete, code sent via url to callback url
     # ie. the method below...
 
-    # query = urlencode(data)
-    # `urlencode` is used here as special characters in the scope url
-    # (eg. :// and /) must be percent encoded (eg. %3A %2F)
-
     created_url = f"{"https://auth.ebay.com/oauth2/authorize"}?{query}"
 
     return redirect(created_url)
