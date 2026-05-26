@@ -1,7 +1,11 @@
-from config import client_id, client_secret
+#from config import client_id, client_secret
 from time import time
 import requests
 import json
+import os
+
+client_id = os.environ.get("client_id")
+client_secret = os.environ.get("client_secret")
 
 def load_tokens():
     try:

@@ -1,4 +1,4 @@
-from config import client_id, client_secret, api_scope, render_ulr
+# from config import client_id, client_secret, api_scope, render_ulr
 from ebay_client import save_tokens, load_tokens, is_token_expired
 
 from ebay_client import get_conversations
@@ -7,6 +7,10 @@ from flask import Flask, request, redirect
 import requests
 import os
 
+client_id = os.environ.get("client_id")
+client_secret = os.environ.get("client_secret")
+api_scope = os.environ.get("api_scope")
+render_ulr = os.environ.get("render_ulr")
 
 flask_app = Flask(__name__)
 
