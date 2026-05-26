@@ -93,11 +93,19 @@ def get_token():
         "received_at": token_data.get("received_at", 0)
     } # flask automatically converts dict into http responce
 
-
-@flask_app.route("/inspect-conversations")
-def inspect_conversations():
-    conversations = get_conversations()
-    return conversations
+@flask_app.route("/conversations")
+def conversations():
+    access_token = test_token.get("access_token")
+    headers = {"Authorization": f"Bearer {access_token}"}
+    
+    api_response = requests.get(
+        url = "https://api.ebay.com/sell/messaging/v1/conversation",
+        headers = headers,
+        params = {"limit": 75, "sort": "date_desc"},
+        timeout = 20
+    )
+    
+    return api_response.json()
 
 @flask_app.route("/check-test-tokenn")
 def check_test_token():
