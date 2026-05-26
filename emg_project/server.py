@@ -62,8 +62,11 @@ def callback():
     if code_responce.status_code != 200:
         return f"Failed to exchange token: {code_responce.text}", 400
 
-    save_tokens(code_responce.json())
+    #save_tokens(code_responce.json())
     # json data saved as pythonic dict
+
+    test_token.update(code_responce.json())
+    # `update` adds key and value pairs to my existing dict
 
     return "<h1>Authorization complete!</h1><p>You can close this page.</p>"
 
