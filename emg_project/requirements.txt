@@ -1,5 +1,3 @@
-Flask
-requests
 #cryptography
 #PySide6
 
