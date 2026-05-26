@@ -43,7 +43,7 @@ def callback():
         return "Missing authorization code within the url", 400
 
     code_responce = requests.post(
-        api_url = "https://api.ebay.com/identity/v1/oauth2/token",
+        url = "https://api.ebay.com/identity/v1/oauth2/token", # parameter must be url
         headers = {"Content-Type": "application/x-www-form-urlencoded"},
         auth = (client_id, client_secret),
         data = {
