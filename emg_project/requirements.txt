@@ -10,3 +10,9 @@
 # spacy used by presidio-analyzer
 # libary for natural language processing
 # tokenizes the text and identifies entities
+
+
+
+Flask
+requests
+gunicorn 
