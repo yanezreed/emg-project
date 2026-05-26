@@ -8,6 +8,8 @@ from urllib.parse import urlencode
 import requests
 import os
 
+test_token = {}
+
 client_id = os.environ.get("client_id")
 client_secret = os.environ.get("client_secret")
 api_scope = os.environ.get("api_scope")
@@ -92,6 +94,10 @@ def get_token():
 def inspect_conversations():
     conversations = get_conversations()
     return conversations
+
+@flask_app.route("/check-test-tokenn")
+def check_test_token():
+    return test_token
 
 
 if __name__ == "__main__":
