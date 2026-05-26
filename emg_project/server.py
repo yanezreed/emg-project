@@ -65,6 +65,7 @@ def callback():
     #save_tokens(code_responce.json())
     # json data saved as pythonic dict
 
+    global test_token
     test_token.update(code_responce.json())
     # `update` adds key and value pairs to my existing dict
 
