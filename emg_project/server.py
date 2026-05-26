@@ -1,6 +1,8 @@
 from config import client_id, client_secret, api_scope, render_ulr
 from ebay_client import save_tokens, load_tokens, is_token_expired
 
+from ebay_client import get_conversations
+
 from flask import Flask, request, redirect
 import requests
 import os
@@ -80,6 +82,12 @@ def get_token():
         "expires_in": token_data.get("expires_in", 0),
         "received_at": token_data.get("received_at", 0)
     } # flask automatically converts dict into http responce
+
+
+@flask_app.route("/inspect-conversations")
+def inspect_conversations():
+    conversations = get_conversations()
+    return conversations
 
 
 if __name__ == "__main__":
