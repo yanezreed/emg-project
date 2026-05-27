@@ -113,7 +113,7 @@ def conversations():
         url = "https://api.ebay.com/commerce/message/v1/conversation",
         headers = headers,
         params = {
-            "limit": 75,
+            "limit": 50,
             "conversation_type": "FROM_MEMBERS"
         },
         timeout = 20
