@@ -98,7 +98,15 @@ def get_token():
 
 @flask_app.route("/conversations")
 def conversations():
+
+    if not test_token:
+        return "<h1>No token in memory — complete OAuth first</h1>"
+
     access_token = test_token.get("access_token")
+
+    if not access_token:
+        return "<h1>Token found but no access_token key</h1>"
+
     headers = {"Authorization": f"Bearer {access_token}"}
     
     api_response = requests.get(
