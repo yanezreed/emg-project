@@ -1,4 +1,3 @@
-#from config import client_id, client_secret
 from time import time
 import requests
 import json
@@ -23,7 +22,7 @@ def save_tokens(token_data):
         # writes json data to local
 
         # used on render server via `/callback` saving token data after OAuth
-        # being used on the flask server in adtition to within my application
+        # being used on the flask server in addition to within my application
 
 def is_token_expired(token_data):
     if not token_data:
@@ -33,8 +32,8 @@ def is_token_expired(token_data):
     received_at = token_data.get("received_at", 0)
     
     expiry_time = received_at + (expires_in - 30)
-
     time_now = int(time())
+
     return time_now > expiry_time
 
 
@@ -56,7 +55,8 @@ def refresh_access_token():
     request_body = {
         "grant_type": "refresh_token", 
         "refresh_token": token_data["refresh_token"],
-        "scope": "https://api.ebay.com/oauth/api_scope/sell.communication"
+
+        "scope": "https://api.ebay.com/oauth/api_scope/commerce.message"
     }
 
     api_response = requests.post(
@@ -96,15 +96,15 @@ def get_auth_header():
         raise RuntimeError("Could not obtain an access token.")
     
     return {"Authorization": f"Bearer {access_token}"}
-    # auth header expected by the api, each request...
+    # formatted header expected by api each request...
 
 
 def get_conversations():
-    url = f"https://api.ebay.com/sell/messaging/v1/conversation"
+    url = "https://api.ebay.com/commerce/message/v1/conversation"
 
     formatted_access_token = get_auth_header()
 
-    conversations_limit = {"limit": 75, "sort": "date_desc"}
+    conversations_limit = {"limit": 35, "conversation_type": "FROM_MEMBERS"}
 
     api_response = requests.get(
         url = url,
@@ -115,21 +115,23 @@ def get_conversations():
 
     if api_response.status_code == 200:
         return api_response.json().get("conversations", [])
-
-        # conversations is a list of dicts with data such as
-     # returned: convo id, buyer name, topic item, timestamp
+    
+    # conversations is a list of dicts...
+    # including; conversationId, conversationStatus, conversationType,
+    # createdDate, referenceId, unreadCount, latestMessage
 
     raise RuntimeError(
         f"Error when getting conversations: {api_response.status_code}/{api_response.text}")
 
 
 def get_conversation_messages(conversation_id):
-    url = f"https://api.ebay.com/sell/messaging/v1/conversation/{conversation_id}/message"
+    url = f"https://api.ebay.com/commerce/message/v1/conversation/{conversation_id}"
     formatted_access_token = get_auth_header()
 
     api_response = requests.get(
         url = url,
         headers = formatted_access_token,
+        params = {"conversation_type": "FROM_MEMBERS"},
         timeout = 20
     )
 
