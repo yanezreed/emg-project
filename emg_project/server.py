@@ -1,5 +1,3 @@
-from ebay_client import save_tokens, load_tokens, is_token_expired, get_conversations, ensure_valid_token
-
 from ebay_client import save_tokens, load_tokens, is_token_expired
 from flask import Flask, request, redirect
 import requests
@@ -15,6 +13,7 @@ render_ulr = os.environ.get("render_ulr")
 # meaning colons must be %3A and forward slashes must be %2F...
 
 flask_app = Flask(__name__)
+
 
 @flask_app.route("/start")
 def start_oauth():
@@ -87,21 +86,6 @@ def get_token():
         "received_at": token_data.get("received_at", 0)
     } 
     # flask will auto converts dict into https responce
-
-# quick test...
-@flask_app.route("/inspect-messages")
-def inspect_messages():
-    conversations = get_conversations()
-    first_id = conversations[0].get("conversationId")
-    access_token = ensure_valid_token()
-    headers = {"Authorization": f"Bearer {access_token}"}
-    api_response = requests.get(
-        url = f"https://api.ebay.com/commerce/message/v1/conversation/{first_id}",
-        headers = headers,
-        params = {"conversation_type": "FROM_MEMBERS"},
-        timeout = 20
-    )
-    return api_response.text
 
 
 if __name__ == "__main__":
