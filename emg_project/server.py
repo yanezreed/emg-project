@@ -1,5 +1,4 @@
 from ebay_client import save_tokens, load_tokens, is_token_expired
-
 from flask import Flask, request, redirect
 import requests
 import os
@@ -84,7 +83,8 @@ def get_token():
         "access_token": token_data.get("access_token"),
         "expires_in": token_data.get("expires_in", 0),
         "received_at": token_data.get("received_at", 0)
-    } # flask automatically converts dict into http responce
+    } 
+    # flask will auto converts dict into https responce
 
 
 if __name__ == "__main__":
