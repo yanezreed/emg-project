@@ -110,9 +110,9 @@ def conversations():
     headers = {"Authorization": f"Bearer {access_token}"}
     
     api_response = requests.get(
-        url = "https://api.ebay.com/sell/messaging/v1/conversation",
+        url = "https://api.ebay.com/commerce/message/v1/conversation",
         headers = headers,
-        params = {"limit": 75, "sort": "date_desc"},
+        params = {"limit": 75},
         timeout = 20
     )
     
