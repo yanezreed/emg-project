@@ -15,6 +15,10 @@ client_secret = os.environ.get("client_secret")
 api_scope = os.environ.get("api_scope")
 render_ulr = os.environ.get("render_ulr")
 
+# note: my `api_scope` enviromental variable, on render, must be percent encoded
+# as the scope itself is a url passed within the users url as a parameter
+# meaning colons must be %3A and forward slashes must be %2F...
+
 flask_app = Flask(__name__)
 
 @flask_app.route("/start")
@@ -30,7 +34,6 @@ def start_oauth():
     query = ""
     for key, value in data.items():
         query += f"{key}={value}&"
-
     query = query.rstrip("&")
     # builds str query, redirecting user to OAuth page
     # once complete, code sent via url to callback url
