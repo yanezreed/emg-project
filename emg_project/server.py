@@ -1,14 +1,8 @@
-# from config import client_id, client_secret, api_scope, render_ulr
 from ebay_client import save_tokens, load_tokens, is_token_expired
 
-from ebay_client import get_conversations
-
 from flask import Flask, request, redirect
-from urllib.parse import urlencode
 import requests
 import os
-
-test_token = {}
 
 client_id = os.environ.get("client_id")
 client_secret = os.environ.get("client_secret")
@@ -65,12 +59,8 @@ def callback():
     if code_responce.status_code != 200:
         return f"Failed to exchange token: {code_responce.text}", 400
 
-    #save_tokens(code_responce.json())
+    save_tokens(code_responce.json())
     # json data saved as pythonic dict
-
-    global test_token
-    test_token.update(code_responce.json())
-    # `update` adds key and value pairs to my existing dict
 
     return "<h1>Authorization complete!</h1><p>You can close this page.</p>"
 
@@ -95,35 +85,6 @@ def get_token():
         "expires_in": token_data.get("expires_in", 0),
         "received_at": token_data.get("received_at", 0)
     } # flask automatically converts dict into http responce
-
-@flask_app.route("/conversations")
-def conversations():
-
-    if not test_token:
-        return "<h1>No token in memory — complete OAuth first</h1>"
-
-    access_token = test_token.get("access_token")
-
-    if not access_token:
-        return "<h1>Token found but no access_token key</h1>"
-
-    headers = {"Authorization": f"Bearer {access_token}"}
-    
-    api_response = requests.get(
-        url = "https://api.ebay.com/commerce/message/v1/conversation",
-        headers = headers,
-        params = {
-            "limit": 35,
-            "conversation_type": "FROM_MEMBERS"
-        },
-        timeout = 20
-    )
-    
-    return f"Status: {api_response.status_code} - Body: {api_response.text}"
-
-@flask_app.route("/check-test-tokenn")
-def check_test_token():
-    return test_token
 
 
 if __name__ == "__main__":
