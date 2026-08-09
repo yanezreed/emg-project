@@ -135,14 +135,14 @@ def get_conversation_messages(conversation_id):
     raise RuntimeError(f"Error when getting messages: {api_response.status_code}")
 
 
-def send_message(conversation_id, message_text):
+def send_message(customer_username, message_text):
     url = f"https://api.ebay.com/commerce/message/v1/send_message"
 
-    conversation_id = str(conversation_id).strip()
+    customer_username = str(customer_username).strip()
     message_text = str(message_text).strip()
 
     python_dict = {
-            "conversationId": conversation_id,
+            "otherPartyUsername": customer_username,
             "messageText": message_text
         }
 
@@ -160,4 +160,4 @@ def send_message(conversation_id, message_text):
     if api_response.status_code == 200 or api_response.status_code == 201:
         return True # covers possible multiple resources sent to api (201)
 
-    raise RuntimeError(f"Api error check: {api_response.text}")
+    raise RuntimeError(f"Send message error: {api_response.text}")
