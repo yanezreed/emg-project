@@ -118,21 +118,28 @@ def get_conversations():
 
 
 def get_conversation_messages(conversation_id):
-    url = f"https://api.ebay.com/commerce/message/v1/conversation/{conversation_id}"
+    url = f"https://api.ebay.com/commerce/message/v1/message"
+
+    conversation_id = str(conversation_id).strip()
+
+    python_dict = {
+            "conversation_id": conversation_id,
+            "conversation_type": "FROM_MEMBERS"
+        }
 
     formatted_access_token = get_auth_header()
 
     api_response = requests.get(
         url = url,
         headers = formatted_access_token,
-        params = {"conversation_type": "FROM_MEMBERS"},
+        params = python_dict,
         timeout = 20
     )
 
     if api_response.status_code == 200:
         return api_response.json().get("messages", [])
 
-    raise RuntimeError(f"Error when getting messages: {api_response.status_code}")
+    raise RuntimeError(f"Get conversation error: {api_response.status_code}")
 
 
 def send_message(conversation_id, message_text):
