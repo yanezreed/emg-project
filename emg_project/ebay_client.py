@@ -136,9 +136,9 @@ def get_conversation_messages(conversation_id):
 
 
 def send_message(conversation_id, message_text):
-    url = f"https://api.ebay.com/sell/messaging/v1/conversation/{conversation_id}/message"
+    url = f"https://api.ebay.com/commerce/message/v1/conversation/{conversation_id}/reply"
 
-    json_message = {"messageText": message_text}
+    json_message = {"message": message_text}
 
     headers = get_auth_header()
     headers["Content-Type"] = "application/json"
