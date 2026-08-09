@@ -24,8 +24,8 @@ def save_tokens(token_data):
         # used on render server via `/callback` saving token data after OAuth
         # being used on the flask server in addition to within my application
 
-def is_token_expired(token_data):
-    if not token_data:
+def token_expired_check(token_data):
+    if token_data == None or token_data == {}:
         return True
     
     expires_in = token_data.get("expires_in", 0)
@@ -40,29 +40,27 @@ def is_token_expired(token_data):
 def refresh_access_token():
     token_data = load_tokens()
 
-    if token_data == None or "refresh_token" not in token_data:
+    if token_data == None:
         raise RuntimeError("Token data is invalid.")
+
+    if "refresh_token" not in token_data:
+        raise RuntimeError("Refresh token not included within token data.")
     
     ebay_api_url = "https://api.ebay.com/identity/v1/oauth2/token"
 
     content_type = {"Content-Type": "application/x-www-form-urlencoded"}
     # noting that the payload is formatted as a form ie. key/value pairs
 
-    authorization = (client_id, client_secret)
+    http_basic_authentication = (client_id, client_secret)
     # `requests` formats the strings to base64
     # `Authorization: Basic <base64string>`
 
-    request_body = {
-        "grant_type": "refresh_token", 
-        "refresh_token": token_data["refresh_token"],
-
-        "scope": "https://api.ebay.com/oauth/api_scope/commerce.message"
-    }
+    request_body = {"grant_type": "refresh_token", "refresh_token": token_data["refresh_token"], "scope": "https://api.ebay.com/oauth/api_scope/commerce.message"}
 
     api_response = requests.post(
         url = ebay_api_url,
         headers = content_type,
-        auth = authorization,
+        auth = http_basic_authentication,
         data = request_body,
         timeout = 20
     )
@@ -83,7 +81,7 @@ def ensure_valid_token():
     if token_data == None:
         return refresh_access_token()
 
-    if is_token_expired(token_data):
+    if token_expired_check(token_data):
         return refresh_access_token()
 
     return token_data["access_token"]
@@ -96,7 +94,6 @@ def get_auth_header():
         raise RuntimeError("Could not obtain an access token.")
     
     return {"Authorization": f"Bearer {access_token}"}
-    # formatted header expected by api each request...
 
 
 def get_conversations():
@@ -104,7 +101,7 @@ def get_conversations():
 
     formatted_access_token = get_auth_header()
 
-    conversations_limit = {"limit": 35, "conversation_type": "FROM_MEMBERS"}
+    conversations_limit = {"limit": 35, "conversation_type": "FROM_MEMBERS", "sort": "date_desc"}
 
     api_response = requests.get(
         url = url,
@@ -116,16 +113,13 @@ def get_conversations():
     if api_response.status_code == 200:
         return api_response.json().get("conversations", [])
     
-    # conversations is a list of dicts...
-    # including; conversationId, conversationStatus, conversationType,
-    # createdDate, referenceId, unreadCount, latestMessage
-
     raise RuntimeError(
-        f"Error when getting conversations: {api_response.status_code}/{api_response.text}")
+        f"Error when getting conversations: {api_response.status_code}")
 
 
 def get_conversation_messages(conversation_id):
     url = f"https://api.ebay.com/commerce/message/v1/conversation/{conversation_id}"
+
     formatted_access_token = get_auth_header()
 
     api_response = requests.get(
@@ -138,7 +132,7 @@ def get_conversation_messages(conversation_id):
     if api_response.status_code == 200:
         return api_response.json().get("messages", [])
 
-    raise RuntimeError(f"Error when getting messages: {api_response.status_code}/{api_response.text}")
+    raise RuntimeError(f"Error when getting messages: {api_response.status_code}")
 
 
 def send_message(conversation_id, message_text):
@@ -148,7 +142,6 @@ def send_message(conversation_id, message_text):
 
     headers = get_auth_header()
     headers["Content-Type"] = "application/json"
-    # Adds "Content-Type" key/value pair to access token...
 
     api_response = requests.post(
         url = url,
@@ -160,5 +153,4 @@ def send_message(conversation_id, message_text):
     if api_response.status_code == 200 or api_response.status_code == 201:
         return True # covers possible multiple resources sent to api (201)
 
-    raise RuntimeError(
-        f"Could not send message(s): {api_response.status_code}/{api_response.text}")
+    raise RuntimeError(f"Could not send message(s): {api_response.status_code}")
