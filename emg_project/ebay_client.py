@@ -122,11 +122,13 @@ def get_conversation_messages(conversation_id):
 
     url = f"https://api.ebay.com/commerce/message/v1/conversation/{conversation_id}"
 
-    formatted_access_token = get_auth_header()
+    headers = get_auth_header()
+    params = {"conversation_type": "FROM_MEMBERS"}
 
     api_response = requests.get(
         url = url,
-        headers = formatted_access_token,
+        headers = headers,
+        params = params,
         timeout = 20
     )
 
