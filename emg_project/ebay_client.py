@@ -138,10 +138,15 @@ def get_conversation_messages(conversation_id):
 def send_message(conversation_id, message_text):
     url = f"https://api.ebay.com/commerce/message/v1/send_message"
 
-    json_message = {
-        "conversationId": str(conversation_id).strip(),
-        "messageText": str(message_text).strip()
-    }
+    conversation_id = str(conversation_id).strip()
+    message_text = str(message_text).strip()
+
+    python_dict = {
+            "message": {
+                "conversationId": conversation_id,
+                "messageText": message_text
+            }
+        }
 
     headers = get_auth_header()
     headers["Content-Type"] = "application/json"
@@ -149,7 +154,7 @@ def send_message(conversation_id, message_text):
     api_response = requests.post(
         url = url,
         headers = headers,
-        json = json_message,
+        json = python_dict,
         timeout = 15
     )
 
