@@ -142,10 +142,8 @@ def send_message(conversation_id, message_text):
     message_text = str(message_text).strip()
 
     python_dict = {
-            "message": {
-                "conversationId": conversation_id,
-                "messageText": message_text
-            }
+            "conversationId": conversation_id,
+            "messageText": message_text
         }
 
     headers = get_auth_header()
