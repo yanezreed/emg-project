@@ -139,7 +139,7 @@ def send_message(conversation_id, message_text):
     url = f"https://api.ebay.com/commerce/message/v1/send_message"
 
     json_message = {
-        "conversationId": str(conversation_id),
+        "conversationId": str(conversation_id).strip(),
         "messageText": str(message_text)
     }
 
