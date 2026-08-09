@@ -160,4 +160,4 @@ def send_message(conversation_id, message_text):
     if api_response.status_code == 200 or api_response.status_code == 201:
         return True # covers possible multiple resources sent to api (201)
 
-    raise RuntimeError(f"Could not send message(s): {api_response.status_code}")
+    raise RuntimeError(f"Api error check: {api_response.text}")
