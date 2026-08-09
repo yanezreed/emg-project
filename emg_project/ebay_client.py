@@ -140,7 +140,7 @@ def send_message(conversation_id, message_text):
 
     json_message = {
         "conversationId": str(conversation_id).strip(),
-        "messageText": str(message_text)
+        "messageText": str(message_text).strip()
     }
 
     headers = get_auth_header()
