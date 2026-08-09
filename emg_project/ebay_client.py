@@ -148,6 +148,7 @@ def send_message(conversation_id, message_text):
 
     headers = get_auth_header()
     headers["Content-Type"] = "application/json"
+    headers["Accept"] = "application/json"
 
     api_response = requests.post(
         url = url,
