@@ -135,8 +135,6 @@ def get_conversation_messages(conversation_id):
     if api_response.status_code == 200:
         data = api_response.json()
 
-        print(json.dumps(data, indent = 4))
-
         return data.get("messages", [])
 
     raise RuntimeError(f"Get conversation error: {api_response.status_code}")
