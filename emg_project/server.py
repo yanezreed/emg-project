@@ -31,7 +31,6 @@ def start_oauth():
 
     return redirect(created_url)
 
-
 @flask_app.route("/callback")
 def callback():
     auth_code = request.args.get("code")
@@ -55,7 +54,6 @@ def callback():
 
     return '<h1>Authorization completed</h1>' + '<h2>You may now close this webpage.</h2>'
 
-
 @flask_app.route("/check_token")
 def get_token():
     token_data =  load_tokens()
@@ -72,7 +70,6 @@ def get_token():
         "received_at": token_data["received_at"]
     }
     # flask auto converts dict into https responce
-
 
 if __name__ == "__main__":
     os_port = os.environ['PORT']
