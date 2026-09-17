@@ -1,0 +1,9 @@
+# private files
+ebay_secrets.py
+ebay_tokens.json
+user_database.db
+db/
+
+# virtual environment
+.venv/
+venv/
