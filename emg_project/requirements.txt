@@ -1,16 +1,12 @@
-#cryptography
-#PySide6
+PySide6
 
-#presidio-analyzer
-#presidio-anonymizer
-#spacy
+presidio-analyzer
+presidio-anonymizer
+spacy
 
-# spacy used by presidio-analyzer
-# libary for natural language processing
-# tokenizes the text and identifies entities
-
-
+en-core-web-lg # installs spacy large english language model
 
 Flask
 requests
-gunicorn 
+
+gunicorn # runs flask application as a production web server
