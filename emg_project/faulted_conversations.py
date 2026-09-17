@@ -1,0 +1,1 @@
+permanent_faulted_conversation_ids = {"122065430202", "122065430203"} # examples
