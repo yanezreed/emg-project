@@ -1,3 +1,5 @@
+from PySide6.QtWidgets import QMessageBox, QApplication
+
 from time import time
 import requests
 import json
@@ -36,44 +38,56 @@ def token_expired_check(token_data):
 
     return time_now > expiry_time
 
-
 def refresh_access_token():
-    token_data = load_tokens()
 
-    if token_data == None:
-        raise RuntimeError("Token data is invalid.")
+    QMessageBox.warning(None, "Ebay authorisation expired",
+        "The application will now close. Please restart and log in again.")
 
-    if "refresh_token" not in token_data:
-        raise RuntimeError("Refresh token not included within token data.")
+    application = QApplication.instance()
+
+    application.quit()
+
+    return None
+
+# def refresh_access_token():
+      # note, method is not yet complete...
+      # automatic access token refreshing needs to be reworked within the application
+
+    # token_data = load_tokens()
+
+    # if token_data == None:
+        # raise RuntimeError("Token data is invalid.")
+
+    # if "refresh_token" not in token_data:
+        # raise RuntimeError("Refresh token not included within token data.")
     
-    ebay_api_url = "https://api.ebay.com/identity/v1/oauth2/token"
+    # ebay_api_url = "https://api.ebay.com/identity/v1/oauth2/token"
 
-    content_type = {"Content-Type": "application/x-www-form-urlencoded"}
-    # noting that the payload is formatted as a form ie. key/value pairs
+    # content_type = {"Content-Type": "application/x-www-form-urlencoded"}
+      # noting that the payload is formatted as a form ie. key/value pairs
 
-    http_basic_authentication = (client_id, client_secret)
-    # `requests` formats the strings to base64
-    # `Authorization: Basic <base64string>`
+    # http_basic_authentication = (client_id, client_secret)
+      # `requests` formats the strings to base64
+      # `Authorization: Basic <base64string>`
 
-    request_body = {"grant_type": "refresh_token", "refresh_token": token_data["refresh_token"], "scope": "https://api.ebay.com/oauth/api_scope/commerce.message"}
+    # request_body = {"grant_type": "refresh_token", "refresh_token": token_data["refresh_token"], "scope": "https://api.ebay.com/oauth/api_scope/commerce.message"}
 
-    api_response = requests.post(
-        url = ebay_api_url,
-        headers = content_type,
-        auth = http_basic_authentication,
-        data = request_body,
-        timeout = 20
-    )
+    # api_response = requests.post(
+        # url = ebay_api_url,
+        # headers = content_type,
+        # auth = http_basic_authentication,
+        # data = request_body,
+        # timeout = 20
+    # )
 
-    if api_response.status_code != 200:
-        raise RuntimeError("Error when gaining access token.")
+    # if api_response.status_code != 200:
+        # raise RuntimeError("Error when gaining access token.")
 
-    token_data = api_response.json()
+    # token_data = api_response.json()
 
-    save_tokens(token_data)
+    # save_tokens(token_data)
 
-    return token_data["access_token"]
-
+    # return token_data["access_token"]
 
 def ensure_valid_token():
     token_data = load_tokens()
@@ -86,7 +100,6 @@ def ensure_valid_token():
 
     return token_data["access_token"]
 
-
 def get_auth_header():
     access_token = ensure_valid_token()
 
@@ -94,7 +107,6 @@ def get_auth_header():
         raise RuntimeError("Could not obtain an access token.")
     
     return {"Authorization": f"Bearer {access_token}"}
-
 
 def get_conversations():
     url = "https://api.ebay.com/commerce/message/v1/conversation"
@@ -115,7 +127,6 @@ def get_conversations():
     
     raise RuntimeError(
         f"Error when getting conversations: {api_response.status_code}")
-
 
 def get_conversation_messages(conversation_id):
     conversation_id = str(conversation_id).strip()
@@ -138,7 +149,6 @@ def get_conversation_messages(conversation_id):
         return data.get("messages", [])
 
     raise RuntimeError(f"Get conversation error: {api_response.status_code}")
-
 
 def send_message(conversation_id, message_text):
     url = f"https://api.ebay.com/commerce/message/v1/send_message"
