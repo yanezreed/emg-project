@@ -5,7 +5,7 @@
 Cs50 final project, written by yanezreed
 
 # Video demo link
-…
+[…](https://www.youtube.com/watch?v=XBtkSlVMrD8)
 
 ## Overview
 
