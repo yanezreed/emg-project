@@ -1,9 +1,7 @@
 import requests
 
-STATUS_URL = "https://status.render.com/api/v2/status.json"
-
 def main():
-    response = requests.get(STATUS_URL)
+    response = requests.get("https://status.render.com/api/v2/status.json")
     print(response)
 
 if __name__ == "__main__":
