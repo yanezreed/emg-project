@@ -1,25 +1,45 @@
 # Design
+
 ## Introduction
+
 Having limited experience with designing larger scale programs with the complexity of this project, designing the structuring of this systems design really challenged me.
+
 This document has been written to explain the design decisions, and the resulting compromises made throughout. With the aim to describe not only the design itself, but the thought process behind it. Including earlier decisions that had to be reevaluated, due to my increased understanding of all the systems related.
+
 ## Architectural overview
+
 The layered architecture discussed throughout this document was a key design decision made early within the project, and will be covered extensively. Recommended to me early on in the project, as a way to divide up responsibilities and keep my codebase well organised.
+
 In hindsight this recommendation was monumental for my work, allowing me to refer back to a clear organisational structure that made it significantly easier to break down problems into smaller, more manageable components and methods.
+
 This layered design resulted in the division of the system, which is actually a widely adopted approach within software engineering. Rather than the tightly coupled code bases of my previous small scale projects, this one was split into three key layers of responsibility.
-Application layer. Handling session management, and data processing. 
-Api layer. For external communication with both a render server, and ebays api. 
-User interface layer. To collect user input and to present the results.
+
+- Application layer. Handling session management, and data processing. 
+- Api layer. For external communication with both a render server, and ebays api. 
+- User interface layer. To collect user input and to present the results.
+  
 While true that the current implementation of this project still uses this three layered design, as will be explained through this document, the separation between the layers is no longer fully complete.
+
 This is due to several of my files unavoidably containing a combination of api communication, user interface interaction and application logic. A key reason for this is the pyside6 signal and slot system.
+
 When the user interacts with a widget within my user interface, such as selecting an item within a list, the values associated with that interaction are passed directly through the signal facilitated by this system. However importantly, this passed value can only exist within the context of the file and class in which the widget resides.
+
 Consequently if this user input requires a response using data gathered through the api layer and processed carried out by my application layer, all three responsibilities must exist within the same file. Making a cleanly separated layered design impossible.
+
 The files within the api layer still do perform their specialized http requests to communicate with ebays api directly. But it is unavoidable that several files outside of this layer communicate with my render server or local ollama model as part of their specific workflows also. 
+
 Therefore while the architecture of this project is layered in its overall design, in reality there is significant overlap in responsibilities across all of the layers, introduced progressively as the project expanded.
+
 ## Layers
+
 The following sections will explain each of these layers, with an added explanation of why this architectural design was chosen, and the effect it had on my project.
+
 ## Api layer
+
 ### Files involved
+
 The files that make up this layer include; `ebay_client.py` which is responsible for the majority of communication with ebay's api, as well as `server.py`, which holds the code for an external cloud platform hosted flask server.
+
 ### Responsibilities of layer
 
 The api layer of this project serves as a bridge between my application, and ebays api. Primarily responsible for handling the majority of external communication that is required to send and retrieve information from ebay directly. Such as sending customer replies, retrieving customer/business conversations, and managing the oauth access tokens received. 
@@ -45,38 +65,65 @@ An example of this overlap can be seen within the file `oauth_start.py` which is
 Do note though, that while these files that technically belong to the user interface layer, they only perform the specific communication required for their corresponding workflows. And while it was definitely possible to outsource this functionality to another dedicated file within the scope of the api layer, this additional separation would have increased complexity, and made it harder for readers of the code to understand it, without providing enough benefit within the scope of this project.
 
 ### Token management
+
 This api layer has also been designed to manage and monitor the current state of the oauth access token within both my application and external flask server, enabling authenticated communication between the desktop application and ebays’ api, via the use of http requests.
+
 The flask server contained within `server.py` manages the initial oauth process. It is responsible for saving the complete token data received from ebay, rather than just the specific fields later passed to my application. This token data is saved within `ebay_tokens.json` using the `save_tokens` method. At this stage the token data is only saved within the server.
+
 The access token information consequently is made available to my application, through an http request made to the `/check_token` route. Before returning this data however, a check is taken place through the `token_expired_check` method, ensuring that the access token has not expired or will not expire before reaching the desktop application.
+
 As mentioned the `/check_token` route itself, used by the desktop application to access the token data stored within the server, does not return the complete token response from ebay. Instead, when requested, it constructs a python dictionary containing the `access_token`, `expires_in` and `received_at` values. Flask then converts this returned dictionary from the route into json, and it is returned within the body of the http get response.
+
 When a successful response is received, indicated by a `200` response status code, the `request_server` method used by the application decodes the json back into a python dictionary for processing within the program. This data is then passed to the `save_tokens` method to be stored within the desktops own local `ebay_tokens.json` file.
+
 The `access_token` value is what is actually used to later authenticate requests made to ebays api by my application.
+
 The `expires_in` value is used to record the lifespan of the access token in seconds, while the `received_at` value records the time at which the token data was saved. Used in combination within `token_expired_check` these values allow the application to calculate the exact time the access token is set to expire.
+
 This process is covered in alot more detail within my step by step explanation of the token date workflow within my `ebay_intergration.md` file. And also explains why a thirty second buffer is subtracted from the calculated expiry time to protect my application.
+
 ### Oauth callback
+
 This section covers what was arguably the most complex aspect of building my application, which was the act of building the set workflow required to facilitate ebay’s oauth 2.0.
+
 Naively, my original design, attempted to receive the callback from ebays api within a locally hosted flask server. During testing however it became apparent that a publicly available url is required to receive the redirect. This led to the creation of my new flask server, this time, to be run on the cloud hosting platform called render. 
+
 Though offering free hosting services, render would offer a cost in the form of a temporary windup time for the server. With this wind up occurring if the server had previously been in a state of inactivity. This was constantly considered in the design of my flask server and its workflow, and is explained in detail within my `ebay_integration.md` file.
+
 To account for the wind up time during the authentication process. When attempting initial communication with the render hosted server, my `request_server` function polls the server every two seconds for a max of thirty attempts. If the limit is reached and no valid token is found, it would signify that either the server is not active and functioning, the token exchange may have been unsuccessful, or the user has simply not completed the ebay login. In any of these cases, the process is then abandoned.
+
 The `/start` route, is what initially awakens the flask server, before redirecting the users default browser to the ebay authorisation page. 
+
 Polling of the `/check_token` route within the render hosted flask server, is also initiated separately by the application at this point.
+
 At the beginning of the login attempt, the desktop application utilizes both `load_tokens` and `token_expired_check` to determine whether a new authorisation process is required. As if the token data already stored locally within the desktop application remains valid, there is no need to attempt to obtain a new access token.
+
 Now here is the step by step process of how my application and render hosted flask server handles the callback from the ebay api endpoint.
-The user presses the “connect ebay account” button, within the user interface.
-My application opens the local desktop’s browser to flask's `/start` endpoint. 
-The desktop application polls the `/check_token` endpoint of the flask server, via the `request_server` method.
-An oauth authorisation url is then generated, and the user is redirected to ebay's login page to authenticate communication between the application and ebay api endpoint.
-Once the user has authenticated, ebay redirects the browser to flasks server’s `/callback` endpoint, with an authorization code passed via url.
-The `/callback` route then exchanges the auth code for an access token, via the use of a http post request to ebay’s api endpoint, then the token is saved within the server through the use of the method `save_tokens`. 
-When polling from the desktop application detects a valid token within the server, using a `/check_token` route request, the token data is saved locally within the desktop.
+
+- The user presses the “connect ebay account” button, within the user interface.
+- My application opens the local desktop’s browser to flask's `/start` endpoint. 
+- The desktop application polls the `/check_token` endpoint of the flask server, via the `request_server` method.
+- An oauth authorisation url is then generated, and the user is redirected to ebay's login page to authenticate communication between the application and ebay api endpoint.
+- Once the user has authenticated, ebay redirects the browser to flasks server’s `/callback` endpoint, with an authorization code passed via url.
+- The `/callback` route then exchanges the auth code for an access token, via the use of a http post request to ebay’s api endpoint, then the token is saved within the server through the use of the method `save_tokens`. 
+- When polling from the desktop application detects a valid token within the server, using a `/check_token` route request, the token data is saved locally within the desktop.
+  
 Once the initial oauth callback has been completed, the application holds a valid access token as well as its expected expiry time. 
+
 ### Data Retrieval Methods
+
 The api layer also provides methods such as `get_conversations` and `get_conversation_messages`, which utilize get requests to gather information from the ebay api to be displayed within the application. This allows the application to request customer conversations, without the need to construct any sort of api call, or be involved with the parsing of the response. Instead this is carried out within the api layer, specifically `ebay_client.py`.
+
 ### Error handling
+
 Each of the methods within `ebay_client.py` validates that the http status code returned by the associated requests made to ebays api, are in line with expectations. 
+
 If the request is unsuccessful, a run time error will be raised within the specific method, containing a clear error message for the user along with the returned status code. This immediately identifies where the failure has occurred, before any incorrect or incomplete data is returned. The user interface will then display a message through a `qmessagebox` to alert the user that an error has occurred within the current workflow.
+
 Other files including `oauth_start.py`, `reply_dialog.py` and `workflow_two_dialog.py` also handle responses from http requests made to either the render server, or the local ollama model.
+
 Although this means that http error handling is not completely contained within `ebay_client.py` the attempt was made to centralise this handling where feasible, as this was part of my original design. The aim being, to keep all error handling as close as possible to the external communication that may cause the failure. By doing this unsuccessful responses are prevented from being bypassed further into the applications, to be mistakenly taken as valid data. It also reduces the need for repeated status code checks throughout my work, making critical errors easier to locate and solve.
+
 ## Application Layer
 
 ### Files involved
