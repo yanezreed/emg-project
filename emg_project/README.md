@@ -5,7 +5,15 @@
 Cs50 final project, written by yanezreed
 
 # Video demo link
+
 https://www.youtube.com/watch?v=XBtkSlVMrD8
+
+# Render windup and oauth process (optional)
+
+https://www.youtube.com/watch?v=lTuWdn3GHsM
+
+This is my optional extended video. The video above serves as the final version for CS50.
+However, this extended version allows me to showcase my render servers wind up and ebay oauth processes within my application.
 
 ## Overview
 
@@ -35,7 +43,7 @@ Once at the login window, the user is then able to sign into their existing acco
 
 The username and password of this account are collected and stored by my program, within my local sqlite database. Secured using the `pbkdf2-hmac-sha256` function, which for an in depth breakdown of this function and the security decision made around it, please see my `security.md` file.
 
- ### Linking a user ebay account
+### Linking a user ebay account
 
 After the login process has been successful, the user is then prompted to connect their ebay account they intend to reply to customers from. This could be a business ebay account or an individual, it does not matter.
 
@@ -45,7 +53,7 @@ This process of obtaining the permission to communicate with ebays api points an
 
 In short, through ebays oauth 2.0 process, and my separately hosted flask server, the users browser is opened and redirected to the ebay login page. Where the user, completely separately from my application, is able to sign into their ebay account to grant the request permissions.
 
-Once this process has been completed, my application will have received the required token data to authenticate communication with ebays api endpoints. 
+Once this process has been completed, my application will have received the required token data to authenticate communication with ebays api endpoints.
 
 Enabling my desktop application to send customer replies and collect the connected accounts conversations threads to be displayed within both of my workflows main dialogs.
 
@@ -65,16 +73,16 @@ These conversations can be viewed within a qwidget list, with each of the items 
 
 By selecting a conversation from this list, the corresponding messages thread is then loaded within the right side panel of the interface, with the conversation list still remaining on the left. The messages displayed are separated according to the sender, with the messages sent from the users ebay account aligned to the right hand side, and the customer messages on the left. Each of these messages are also labelled with the senders username, and are padded above and below to improve the readability of the conversation.
 
-Below the widget containing the message thread, on the right hand side of the window, there is a reply input area. Here a reply can be typed out by the user, edited, and sent to the current customer conversation selected. 
+Below the widget containing the message thread, on the right hand side of the window, there is a reply input area. Here a reply can be typed out by the user, edited, and sent to the current customer conversation selected.
 
 ### Sanitisation and review
 
-Before any of the customers conversational data can be passed to the local ai model, 
+Before any of the customers conversational data can be passed to the local ai model,
 due to the restrictions implemented on my application through ebays developer licence agreement, it must first be sanitised within my application. This is because the processing of any personally identifiable information collected through the api, would cause a direct violation of the agreement.
 
 Consequently my application incorporates microsofts presidio library, along with spacys natural language processing model, to automatically detect and redact any sensitive information found within the individual conversations transferred to my application. Note, this entire process is covered in my accompanying `ebay_integration.md` file.
 
-As an extra safeguard, mandatory manual user review of the sanitised conversation is enforced before progressing in the workflow. 
+As an extra safeguard, mandatory manual user review of the sanitised conversation is enforced before progressing in the workflow.
 
 With the user being presented with the sanitised conversation within a dedicated review dialog, with the option to further edit the text to ensure that any possible remaining sensitive content is removed. The user in this dialog can also improve the context the conversation offers, adding back any information that the presidio library might have wrongfully removed.
 
@@ -90,7 +98,7 @@ The combined prompt is then sent to the local llama 3.1 8b model, through the us
 
 The generation window itself contains a read only chat box displaying the conversation with the local model, and positioned underneath lies two text input widgets. The first is used for any additional instructions the user wishes to send to the model, while the second will contain the suggested reply for the customer.
 
-From this generation window, the user can continue to improve the reply by adding further  instructions, or asking the model follow up questions related to the internal business it has provided to it. Such as delivery policies or item specific details unique to the business.
+From this generation window, the user can continue to improve the reply by adding further instructions, or asking the model follow up questions related to the internal business it has provided to it. Such as delivery policies or item specific details unique to the business.
 
 ### Reply
 
@@ -138,7 +146,7 @@ Note that, the full reasoning behind all of the decisions of the design of this 
 
 ## Documentation
 
-Given the sheer complexity of the final version of this project, a set of supporting documentation files have been included within this repository. As rather than cramming everything into the readme, each file instead contains an in depth level of detail  related to different areas of my applications development.
+Given the sheer complexity of the final version of this project, a set of supporting documentation files have been included within this repository. As rather than cramming everything into the readme, each file instead contains an in depth level of detail related to different areas of my applications development.
 
 Below, each file is named and includes a quick summary of what it contains, including some of the section titles contained within each.
 
@@ -148,9 +156,11 @@ This file covers exactly how my application has been structured, and how the dec
 
 The primary focus of this document surrounds my original three layered structure of this project, what each of these layers were responsible for, and where the separation between these layers unavoidably broke down as the project progressed, due to the nature of the pyside6 framework.
 
-Also covered is the local database design and query building involved, as well as the reasoning behind the dual workflow structure discussed within this readme. 
+Also covered is the local database design and query building involved, as well as the reasoning behind the dual workflow structure discussed within this readme.
+
 ## Ebay_intergration.md
-My ebay integration document covers all related topics to my applications communication with ebay. 
+
+My ebay integration document covers all related topics to my applications communication with ebay.
 
 This includes the start to finish oauth authentication process, a detailed explanation of all api endpoints used to send and receive data from ebay, how the data received was handled and processed and how the compliance considerations made throughout both my applications workflows helped to ensure they remained compliant to ebays restrictions.
 
@@ -164,9 +174,9 @@ This includes how my project securely handles the oauth tokens sent to my extern
 
 ## Testing.md
 
-This file covers how my application was manually tested throughout the development, including how each specific layer was tested separately, and how the limitations of oauth process were discovered and dealt with. 
+This file covers how my application was manually tested throughout the development, including how each specific layer was tested separately, and how the limitations of oauth process were discovered and dealt with.
 
-It also includes an explanation of all the bugs found during development and the resulting solutions implemented to address them. 
+It also includes an explanation of all the bugs found during development and the resulting solutions implemented to address them.
 
 ## Technology.md
 
