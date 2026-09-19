@@ -12,9 +12,11 @@ https://www.youtube.com/watch?v=XBtkSlVMrD8
 
 https://www.youtube.com/watch?v=lTuWdn3GHsM
 
-This is my optional extended video. The video above serves as the final version for CS50.
+This is my optional extended video. The video above serves as the final version for cs50.
 
 However, this extended version allows me to showcase my render servers wind up and ebay oauth processes within my application.
+
+Note, the main functionality of my project is showcased within the "Video demo link" above.
 
 ## Overview
 
